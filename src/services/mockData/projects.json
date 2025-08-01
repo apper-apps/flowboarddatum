@@ -1,0 +1,62 @@
+[
+  {
+    "Id": 1,
+    "name": "Website Redesign",
+    "description": "Complete overhaul of the company website with modern design and improved user experience",
+    "status": "Active",
+    "startDate": "2024-01-15T00:00:00.000Z",
+    "endDate": "2024-04-30T00:00:00.000Z",
+    "progress": 65,
+    "createdAt": "2024-01-10T09:00:00.000Z"
+  },
+  {
+    "Id": 2,
+    "name": "Mobile App Development",
+    "description": "Native iOS and Android app for customer engagement and service delivery",
+    "status": "Active",
+    "startDate": "2024-02-01T00:00:00.000Z",
+    "endDate": "2024-07-15T00:00:00.000Z",
+    "progress": 30,
+    "createdAt": "2024-01-25T10:30:00.000Z"
+  },
+  {
+    "Id": 3,
+    "name": "Data Migration",
+    "description": "Migrate legacy systems to cloud infrastructure with enhanced security",
+    "status": "Planning",
+    "startDate": "2024-03-01T00:00:00.000Z",
+    "endDate": "2024-05-30T00:00:00.000Z",
+    "progress": 10,
+    "createdAt": "2024-02-15T14:20:00.000Z"
+  },
+  {
+    "Id": 4,
+    "name": "Marketing Campaign Q2",
+    "description": "Multi-channel marketing campaign for product launch and brand awareness",
+    "status": "On Hold",
+    "startDate": "2024-04-01T00:00:00.000Z",
+    "endDate": "2024-06-30T00:00:00.000Z",
+    "progress": 5,
+    "createdAt": "2024-03-10T11:15:00.000Z"
+  },
+  {
+    "Id": 5,
+    "name": "Customer Portal",
+    "description": "Self-service portal for customers to manage accounts and view service history",
+    "status": "Completed",
+    "startDate": "2023-10-01T00:00:00.000Z",
+    "endDate": "2023-12-31T00:00:00.000Z",
+    "progress": 100,
+    "createdAt": "2023-09-20T13:45:00.000Z"
+  },
+  {
+    "Id": 6,
+    "name": "API Integration",
+    "description": "Third-party service integrations and API development for external partners",
+    "status": "Active",
+    "startDate": "2024-02-15T00:00:00.000Z",
+    "endDate": "2024-05-15T00:00:00.000Z",
+    "progress": 45,
+    "createdAt": "2024-02-01T08:30:00.000Z"
+  }
+]
