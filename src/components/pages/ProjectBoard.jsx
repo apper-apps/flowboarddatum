@@ -7,6 +7,7 @@ import ApperIcon from "@/components/ApperIcon";
 import KanbanBoard from "@/components/organisms/KanbanBoard";
 import TaskTable from "@/components/organisms/TaskTable";
 import TimelineView from "@/components/organisms/TimelineView";
+import GanttView from "@/components/organisms/GanttView";
 import TaskModal from "@/components/organisms/TaskModal";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
@@ -214,6 +215,17 @@ const [view, setView] = useState("kanban");
                 <ApperIcon name="Calendar" size={16} className="mr-2" />
                 Timeline
               </button>
+              <button
+                onClick={() => setView("gantt")}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${
+                  view === "gantt" 
+                    ? "bg-white text-primary shadow-sm" 
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                <ApperIcon name="BarChart3" size={16} className="mr-2" />
+                Gantt
+              </button>
             </div>
             
             <Button onClick={() => handleCreateTask()}>
@@ -259,6 +271,14 @@ const [view, setView] = useState("kanban");
       ) : view === "timeline" ? (
         <TimelineView
           tasks={tasks}
+          onTaskClick={handleTaskClick}
+          onTaskUpdate={handleTaskUpdate}
+          onCreateTask={handleCreateTask}
+        />
+      ) : view === "gantt" ? (
+        <GanttView
+          tasks={tasks}
+          project={project}
           onTaskClick={handleTaskClick}
           onTaskUpdate={handleTaskUpdate}
           onCreateTask={handleCreateTask}
