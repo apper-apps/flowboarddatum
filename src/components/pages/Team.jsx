@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import Avatar from "@/components/atoms/Avatar";
-import Badge from "@/components/atoms/Badge";
-import Card from "@/components/atoms/Card";
+import { userService } from "@/services/api/userService";
+import { taskService } from "@/services/api/taskService";
 import ApperIcon from "@/components/ApperIcon";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
-import { userService } from "@/services/api/userService";
-import { taskService } from "@/services/api/taskService";
+import Badge from "@/components/atoms/Badge";
+import Avatar from "@/components/atoms/Avatar";
+import Card from "@/components/atoms/Card";
 
 const Team = () => {
   const { searchValue } = useOutletContext() || {};
@@ -40,7 +40,7 @@ const Team = () => {
     loadData();
   }, []);
 
-  const getUserTaskStats = (userName) => {
+const getUserTaskStats = (userName) => {
     const userTasks = tasks.filter(task => 
       task.assignee?.toLowerCase() === userName.toLowerCase()
     );
@@ -49,15 +49,25 @@ const Team = () => {
       total: userTasks.length,
       completed: userTasks.filter(t => t.status === "done").length,
       inProgress: userTasks.filter(t => t.status === "in-progress").length,
-      pending: userTasks.filter(t => t.status === "todo").length
+      pending: userTasks.filter(t => t.status === "todo").length,
+      review: userTasks.filter(t => t.status === "review").length
     };
   };
 
+const getUserProjects = (userName) => {
+    const userTasks = tasks.filter(task => 
+      task.assignee?.toLowerCase() === userName.toLowerCase()
+    );
+    const projectIds = [...new Set(userTasks.map(task => task.projectId))];
+    // Return empty array since projects data is not available
+    return [];
+  };
+
   const getWorkloadLevel = (taskCount) => {
-    if (taskCount >= 8) return { level: "high", variant: "error", label: "High" };
-    if (taskCount >= 4) return { level: "medium", variant: "warning", label: "Medium" };
-    if (taskCount >= 1) return { level: "low", variant: "success", label: "Low" };
-    return { level: "none", variant: "default", label: "Available" };
+    if (taskCount >= 8) return { level: "high", variant: "error", label: "High", color: "error" };
+    if (taskCount >= 4) return { level: "medium", variant: "warning", label: "Medium", color: "warning" };
+    if (taskCount >= 1) return { level: "low", variant: "success", label: "Low", color: "success" };
+    return { level: "none", variant: "default", label: "Available", color: "success" };
   };
 
   const filteredUsers = users.filter(user => {
@@ -211,6 +221,28 @@ const Team = () => {
                   </div>
 
                   {/* Progress Breakdown */}
+{/* Workload Overview */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-700">Workload</span>
+                      <Badge variant={getWorkloadLevel(taskStats.total - taskStats.completed).color} size="sm">
+                        {getWorkloadLevel(taskStats.total - taskStats.completed).level}
+                      </Badge>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div className="bg-gray-50 rounded-lg p-2">
+                        <div className="text-gray-600">Active Tasks</div>
+                        <div className="font-semibold text-lg">{taskStats.total - taskStats.completed}</div>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-2">
+                        <div className="text-gray-600">Completed</div>
+                        <div className="font-semibold text-lg text-success">{taskStats.completed}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Task Progress */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Task Progress</span>
@@ -227,16 +259,54 @@ const Team = () => {
                       />
                     </div>
                     <div className="flex items-center justify-between text-xs text-gray-500">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-3">
                         <span>
                           <span className="inline-block w-2 h-2 bg-warning rounded-full mr-1"></span>
                           In Progress: {taskStats.inProgress}
                         </span>
                         <span>
+                          <span className="inline-block w-2 h-2 bg-info rounded-full mr-1"></span>
+                          Review: {taskStats.review}
+                        </span>
+                        <span>
                           <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mr-1"></span>
-                          Pending: {taskStats.pending}
+                          Todo: {taskStats.pending}
                         </span>
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Project Assignments */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-700">Project Assignments</span>
+                      <ApperIcon name="Briefcase" size={16} className="text-gray-400" />
+                    </div>
+                    <div className="space-y-2 max-h-24 overflow-y-auto">
+                      {getUserProjects(user.name).length > 0 ? (
+                        getUserProjects(user.name).map(project => (
+                          <div key={project.Id} className="flex items-center justify-between p-2 bg-gray-50 rounded-md">
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-medium text-gray-900 truncate">
+                                {project.name}
+                              </div>
+                              <div className="text-xs text-gray-500">
+                                {project.status} • {project.progress}% complete
+                              </div>
+                            </div>
+                            <div className="ml-2">
+                              <div className="w-8 h-1.5 bg-gray-200 rounded-full">
+                                <div 
+                                  className="h-1.5 bg-primary rounded-full transition-all duration-300"
+                                  style={{ width: `${project.progress}%` }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="text-xs text-gray-500 italic">No active projects</div>
+                      )}
                     </div>
                   </div>
 
