@@ -8,9 +8,9 @@ export default {
     extend: {
       fontFamily: {
         'display': ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        'body': ['Inter', 'system-ui', 'sans-serif'],
+'body': ['Inter', 'system-ui', 'sans-serif'],
       },
-colors: {
+      colors: {
         primary: '#5B63D3',
         secondary: '#8B92E8',
         accent: '#FF6B6B',
