@@ -6,12 +6,12 @@ import Badge from "@/components/atoms/Badge";
 import ApperIcon from "@/components/ApperIcon";
 import KanbanBoard from "@/components/organisms/KanbanBoard";
 import TaskTable from "@/components/organisms/TaskTable";
+import TimelineView from "@/components/organisms/TimelineView";
 import TaskModal from "@/components/organisms/TaskModal";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import { projectService } from "@/services/api/projectService";
 import { taskService } from "@/services/api/taskService";
-
 const ProjectBoard = () => {
   const { projectId } = useParams();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const ProjectBoard = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [view, setView] = useState("kanban");
+const [view, setView] = useState("kanban");
   const [taskModal, setTaskModal] = useState({ isOpen: false, task: null });
 
   const loadData = async () => {
@@ -179,7 +179,7 @@ const ProjectBoard = () => {
           </div>
           
           <div className="flex items-center gap-3">
-            {/* View Toggle */}
+{/* View Toggle */}
             <div className="flex items-center bg-gray-100 rounded-lg p-1">
               <button
                 onClick={() => setView("kanban")}
@@ -202,6 +202,17 @@ const ProjectBoard = () => {
               >
                 <ApperIcon name="List" size={16} className="mr-2" />
                 List
+              </button>
+              <button
+                onClick={() => setView("timeline")}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${
+                  view === "timeline" 
+                    ? "bg-white text-primary shadow-sm" 
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                <ApperIcon name="Calendar" size={16} className="mr-2" />
+                Timeline
               </button>
             </div>
             
@@ -237,9 +248,16 @@ const ProjectBoard = () => {
         </div>
       </div>
 
-      {/* Task Views */}
+{/* Task Views */}
       {view === "kanban" ? (
         <KanbanBoard
+          tasks={tasks}
+          onTaskClick={handleTaskClick}
+          onTaskUpdate={handleTaskUpdate}
+          onCreateTask={handleCreateTask}
+        />
+      ) : view === "timeline" ? (
+        <TimelineView
           tasks={tasks}
           onTaskClick={handleTaskClick}
           onTaskUpdate={handleTaskUpdate}

@@ -12,7 +12,9 @@ const TaskCard = ({
   draggable = false, 
   onDragStart, 
   onDragEnd,
-  className 
+  className,
+  variant = "default", // "default", "timeline"
+  timelineData = null
 }) => {
   const getDueDateStatus = (dueDate) => {
     const today = new Date();
@@ -34,6 +36,43 @@ const TaskCard = ({
   const handleDragEnd = (e) => {
     if (onDragEnd) onDragEnd(e, task);
   };
+
+// Timeline variant for Gantt chart display
+  if (variant === "timeline") {
+    return (
+      <div
+        className={cn(
+          "relative h-12 cursor-pointer group rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-200",
+          draggable && "transition-transform duration-200 active:scale-105",
+          className
+        )}
+        onClick={onClick}
+        draggable={draggable}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        style={timelineData?.style}
+      >
+        <div className="flex items-center h-full px-3 space-x-2">
+          <div className={cn(
+            "w-3 h-3 rounded-full flex-shrink-0",
+            task.priority === "high" ? "bg-error" :
+            task.priority === "medium" ? "bg-warning" : "bg-gray-400"
+          )} />
+          <span className="text-sm font-medium text-gray-900 truncate flex-1">
+            {task.title}
+          </span>
+          <Avatar name={task.assignee} size="xs" />
+        </div>
+        
+        {/* Dependencies lines would be rendered by parent TimelineView */}
+        {timelineData?.showDuration && (
+          <div className="absolute -bottom-5 left-0 text-xs text-gray-500">
+            {timelineData.duration}
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <Card

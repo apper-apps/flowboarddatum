@@ -10,7 +10,7 @@ export default {
         'display': ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
         'body': ['Inter', 'system-ui', 'sans-serif'],
       },
-      colors: {
+colors: {
         primary: '#5B63D3',
         secondary: '#8B92E8',
         accent: '#FF6B6B',
@@ -20,6 +20,12 @@ export default {
         warning: '#FF9800',
         error: '#F44336',
         info: '#2196F3',
+        timeline: {
+          grid: '#f8fafc',
+          border: '#e5e7eb',
+          today: '#ef4444',
+          dependency: '#5b63d3'
+        },
       },
       fontSize: {
         'xs': '0.75rem',
@@ -40,8 +46,20 @@ export default {
         'lg': '8px',
         'xl': '12px',
       },
-      backdropBlur: {
+backdropBlur: {
         xs: '2px',
+      },
+      zIndex: {
+        '60': '60',
+        '70': '70',
+      },
+      minWidth: {
+        '32': '8rem',
+        '48': '12rem',
+      },
+      gridTemplateColumns: {
+        'timeline': '200px 1fr',
+        'timeline-lg': '250px 1fr',
       },
     },
   },
