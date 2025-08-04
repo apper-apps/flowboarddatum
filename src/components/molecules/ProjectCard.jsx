@@ -71,7 +71,30 @@ const ProjectCard = ({ project, className }) => {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between text-sm text-gray-500 pt-2 border-t border-gray-100">
+{/* Milestones Progress */}
+        {project.milestoneCount > 0 && (
+          <div className="pt-3 border-t border-gray-100">
+            <div className="flex items-center justify-between text-sm mb-2">
+              <div className="flex items-center gap-1 text-gray-600">
+                <ApperIcon name="Target" size={14} />
+                <span>Milestones</span>
+              </div>
+              <span className="text-gray-900 font-medium">
+                {project.completedMilestones}/{project.milestoneCount}
+              </span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-1.5">
+              <div 
+                className="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
+                style={{ 
+                  width: `${project.milestoneCount > 0 ? (project.completedMilestones / project.milestoneCount) * 100 : 0}%` 
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="flex items-center justify-between text-sm text-gray-500 pt-2 border-t border-gray-100">  
           <div className="flex items-center gap-1">
             <ApperIcon name="Calendar" size={14} />
             <span>Due {format(new Date(project.endDate), "MMM dd")}</span>

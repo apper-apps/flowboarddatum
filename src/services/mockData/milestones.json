@@ -1,0 +1,122 @@
+[
+  {
+    "Id": 1,
+    "projectId": 1,
+    "title": "Design Phase Complete",
+    "description": "Complete all wireframes, mockups, and design system documentation",
+    "dueDate": "2024-02-15T00:00:00.000Z",
+    "status": "Completed",
+    "progress": 100,
+    "priority": "High",
+    "createdAt": "2024-01-15T09:00:00.000Z",
+    "completedAt": "2024-02-14T16:30:00.000Z"
+  },
+  {
+    "Id": 2,
+    "projectId": 1,
+    "title": "Frontend Development",
+    "description": "Implement all user-facing components and pages",
+    "dueDate": "2024-03-30T00:00:00.000Z",
+    "status": "In Progress",
+    "progress": 75,
+    "priority": "High",
+    "createdAt": "2024-02-01T10:00:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 3,
+    "projectId": 1,
+    "title": "Backend Integration",
+    "description": "Connect frontend with backend APIs and databases",
+    "dueDate": "2024-04-15T00:00:00.000Z",
+    "status": "Pending",
+    "progress": 20,
+    "priority": "Medium",
+    "createdAt": "2024-02-15T11:00:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 4,
+    "projectId": 1,
+    "title": "Testing & Launch",
+    "description": "Complete testing phase and deploy to production",
+    "dueDate": "2024-04-30T00:00:00.000Z",
+    "status": "Pending",
+    "progress": 0,
+    "priority": "High",
+    "createdAt": "2024-03-01T09:00:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 5,
+    "projectId": 2,
+    "title": "MVP Prototype",
+    "description": "Basic app functionality for user testing",
+    "dueDate": "2024-03-15T00:00:00.000Z",
+    "status": "In Progress",
+    "progress": 60,
+    "priority": "High",
+    "createdAt": "2024-02-01T10:30:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 6,
+    "projectId": 2,
+    "title": "User Testing Phase",
+    "description": "Conduct user testing and gather feedback",
+    "dueDate": "2024-05-01T00:00:00.000Z",
+    "status": "Pending",
+    "progress": 0,
+    "priority": "Medium",
+    "createdAt": "2024-02-15T14:00:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 7,
+    "projectId": 2,
+    "title": "App Store Release",
+    "description": "Final app submission to iOS and Android stores",
+    "dueDate": "2024-07-15T00:00:00.000Z",
+    "status": "Pending",
+    "progress": 0,
+    "priority": "High",
+    "createdAt": "2024-03-01T12:00:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 8,
+    "projectId": 3,
+    "title": "Infrastructure Assessment",
+    "description": "Analyze current systems and migration requirements",
+    "dueDate": "2024-03-15T00:00:00.000Z",
+    "status": "In Progress",
+    "progress": 45,
+    "priority": "High",
+    "createdAt": "2024-02-15T14:20:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 9,
+    "projectId": 6,
+    "title": "API Documentation",
+    "description": "Complete API documentation and developer guides",
+    "dueDate": "2024-03-30T00:00:00.000Z",
+    "status": "In Progress",
+    "progress": 80,
+    "priority": "Medium",
+    "createdAt": "2024-02-15T08:30:00.000Z",
+    "completedAt": null
+  },
+  {
+    "Id": 10,
+    "projectId": 6,
+    "title": "Integration Testing",
+    "description": "Test all third-party integrations thoroughly",
+    "dueDate": "2024-05-01T00:00:00.000Z",
+    "status": "Pending",
+    "progress": 10,
+    "priority": "High",
+    "createdAt": "2024-03-01T10:00:00.000Z",
+    "completedAt": null
+  }
+]

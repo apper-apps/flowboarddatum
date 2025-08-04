@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import Button from "@/components/atoms/Button";
-import Badge from "@/components/atoms/Badge";
+import { taskService } from "@/services/api/taskService";
+import { projectService } from "@/services/api/projectService";
 import ApperIcon from "@/components/ApperIcon";
-import KanbanBoard from "@/components/organisms/KanbanBoard";
-import TaskTable from "@/components/organisms/TaskTable";
-import TimelineView from "@/components/organisms/TimelineView";
-import GanttView from "@/components/organisms/GanttView";
 import TaskModal from "@/components/organisms/TaskModal";
+import TimelineView from "@/components/organisms/TimelineView";
+import TaskTable from "@/components/organisms/TaskTable";
+import GanttView from "@/components/organisms/GanttView";
+import KanbanBoard from "@/components/organisms/KanbanBoard";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
-import { projectService } from "@/services/api/projectService";
-import { taskService } from "@/services/api/taskService";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
 const ProjectBoard = () => {
   const { projectId } = useParams();
   const navigate = useNavigate();
@@ -283,7 +283,7 @@ const [view, setView] = useState("kanban");
           onTaskUpdate={handleTaskUpdate}
           onCreateTask={handleCreateTask}
         />
-      ) : (
+) : (
         <TaskTable
           tasks={tasks}
           onTaskClick={handleTaskClick}
